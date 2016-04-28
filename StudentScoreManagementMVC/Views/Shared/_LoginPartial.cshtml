@@ -1,0 +1,23 @@
+﻿@if (HttpContext.Current.Session["UserNumber"]!=null)
+{
+    using (Html.BeginForm("SignOut", "Default", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="#"> hello, @HttpContext.Current.Session["UserNumber"]</a> 
+          </li>
+        <li>
+            <a href="/Default/SignOut">Sign Out</a>
+        </li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Sign Up", "SignUp", "Default", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Default", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
